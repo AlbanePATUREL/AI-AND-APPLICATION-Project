@@ -29,5 +29,5 @@ Kaggle datasets we will use :
 
 &emsp;This dataset includes 11 columns: PassengerId, Survived, DistanceFromV, Name, Sex, Age, WealthIndex, ShelterAccess, HasPet, ReactionTime, and Status. It contains numerical features like age, distance from Vesuvius, and wealth index, as well as boolean variables such as survival and shelter access.
 
-&emsp;We created this dataset to simulate the situation of individuals during the Vesuvius eruption and explore how different factors may have influenced their survival. Some details, like injury level, were intentionally excluded as they were not relevant to our project’s objectives.
+&emsp;We created this dataset to simulate the situation of individuals during the Vesuvius eruption and explore how different factors may have influenced their survival. Some details, like injury level, were intentionally excluded as they were not relevant to our project’s objectives. We will use randomForest to create a model predicting survival during Vesuvius eruption.
 
