@@ -27,9 +27,7 @@ Kaggle datasets we will use :
 
 ## **Description of the Dataset :**
 
-&emsp;This dataset contains 11 columns: PassengerId, Survived, DistanceFromV, Name, Sex, Age, WealthIndex, ShelterAccess, HasPet , ReactionTime and Status . The dataset includes numerical features such as the distance from the Vesuvius volcano, their wealth index and their age. Additionally, it has boolean features, for example if the person survived or not, and the access to a shelter.
+&emsp;This dataset includes 11 columns: PassengerId, Survived, DistanceFromV, Name, Sex, Age, WealthIndex, ShelterAccess, HasPet, ReactionTime, and Status. It contains numerical features like age, distance from Vesuvius, and wealth index, as well as boolean variables such as survival and shelter access.
 
-&emsp;We chose to create this dataset to challenge ourselves to create a new one that would be adapted to this situation. We decided together of what type of columns to add in order to recreate the situation of certain victims of the tragedy and how it may have affected their deaths.
-
-&emsp;When we were creating the dataset, we decided to not include some information that would not be useful to our project, such as the injury level.
+&emsp;We created this dataset to simulate the situation of individuals during the Vesuvius eruption and explore how different factors may have influenced their survival. Some details, like injury level, were intentionally excluded as they were not relevant to our project’s objectives.
 
