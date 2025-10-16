@@ -1,5 +1,5 @@
 # Exploring survival during Pompeii eruption (Vesuivius)
-<img width="755" height="505" alt="vesuve" src="https://github.com/user-attachments/assets/8e283fc8-0b4c-46d6-a46e-4e1fd37337d4" />
+<img width="500" height="200" alt="vesuve" src="https://github.com/user-attachments/assets/8e283fc8-0b4c-46d6-a46e-4e1fd37337d4" />
 
 
 **Group members :**
