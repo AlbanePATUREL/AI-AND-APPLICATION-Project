@@ -21,4 +21,9 @@ Kaggle datasets we will use : - https://www.kaggle.com/datasets/jessemostipak/vo
 
 ## **Description of the Dataset :**
 
-&emsp;Hello blabla data We are going to use several machineries to treat ... randomForest
+&emsp;This dataset contains 11 columns: PassengerId, Survived, DistanceFromV, Name, Sex, Age, WealthIndex, ShelterAccess, HasPet , ReactionTime and Status . The dataset includes numerical features such as the distance from the Vesuvius volcano, their wealth index and their age. Additionally, it has boolean features, for example if the person survived or not, and the access to a shelter.
+
+&emsp;We chose to create this dataset to challenge ourselves to create a new one that would be adapted to this situation. We decided together of what type of columns to add in order to recreate the situation of certain victims of the tragedy and how it may have affected their deaths.
+
+&emsp;When we were creating the dataset, we decided to not include some information that would not be useful to our project, such as the injury level.
+
