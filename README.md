@@ -13,4 +13,4 @@
 
 ## **Proposal :**
 
-&emsp;Hello blabla éruption vésuve morts pouf
+&emsp;Hello blabla éruption vésuve morts pouf We are going to use several machineries to treat ...
