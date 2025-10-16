@@ -17,4 +17,4 @@
 
 ## **Description of the Dataset :**
 
-&emsp;Hello blabla data tableau SQL 
+&emsp;Hello blabla data We are going to use several machineries to treat ...
