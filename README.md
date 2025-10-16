@@ -1,1 +1,1 @@
-# AI-AND-APPLICATION-Project
+# Exploring survival during Pompeii eruption (Vesuivius)
