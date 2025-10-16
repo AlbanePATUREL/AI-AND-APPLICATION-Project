@@ -9,3 +9,8 @@
 | Thomas BUCHLER    | Computer science       |thomas.buchler@edu.ece.com |
 | Albane PATUREL    | Computer science       |albane.paturel@edu.ece.fr  |
 | Zoé BOUSQUENAUD   | Computer Science       |zoe.bousquenaud@gmail.com  |
+
+
+## **Proposal :**
+
+&emsp;Hello blabla éruption vésuve morts pouf
