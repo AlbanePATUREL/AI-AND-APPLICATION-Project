@@ -32,3 +32,23 @@ Kaggle datasets we will use :
 
 &emsp;We created this dataset to simulate the situation of individuals during the Vesuvius eruption and explore how different factors may have influenced their survival. Some details, like injury level, were intentionally excluded as they were not relevant to our project’s objectives. We will use randomForest to create a model predicting survival during Vesuvius eruption.
 
+
+## **I)Introduction** ##
+&emsp; -Motivation: Why are you doing this?
+&emsp; -What do you want to see at the end?
+
+## **II)Datasets** ##
+&emsp; -Describing your dataset
+
+
+## **III)Methodology** ##
+&emsp; -Explaining your choice of algorithms (methods, any modelsfrom AIML libraries)
+&emsp; -Explaining features or code (if any)
+
+## **IV)Evaluation & Analysis** ##
+&emsp; -Graphs, tables, any statistics (if any)
+
+## **V)Related Work (e.g., existing studies)** ##
+&emsp; -Tools, libraries, blogs, or any documentation that you have used to do this project.
+
+## **VI)Conclusion: Discussion** ##
