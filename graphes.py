@@ -67,6 +67,79 @@ def plot_survival_by_distance_tens(df, surv_col, out_dir):
     plt.show()
     print(f"Image saved: {out_file.resolve()}")
 
+def plot_survival_by_gender(df, surv_col, out_dir):
+    out_dir = Path(out_dir)
+    out_dir.mkdir(exist_ok=True, parents=True)
+    if "Sex" not in df.columns and "Gender" not in df.columns:
+        raise KeyError("No 'Sex' or 'Gender' column found in dataset.")
+
+    gender_col = "Sex" if "Sex" in df.columns else "Gender"
+    s = pd.to_numeric(df[surv_col], errors="coerce")
+    s = (s > 0).astype(int)
+    data = pd.DataFrame({"Gender": df[gender_col], "Survived": s}).dropna()
+
+    grouped = data.groupby("Gender")["Survived"].mean()
+    fig = plt.figure()
+    plt.bar(grouped.index, grouped.values)
+    plt.ylim(0, 1)
+    plt.ylabel("Survival rate (0-1)")
+    plt.xlabel("Gender")
+    plt.title("Survival rate by gender")
+    out_file = out_dir / "04_survival_by_gender.png"
+    fig.savefig(out_file, bbox_inches="tight", dpi=140)
+    plt.show()
+    print(f"Image saved: {out_file.resolve()}")
+
+def plot_survival_by_reaction_time(df, surv_col, out_dir):
+    out_dir = Path(out_dir)
+    out_dir.mkdir(exist_ok=True, parents=True)
+    if "ReactionTime" not in df.columns:
+        raise KeyError("No 'ReactionTime' column found in dataset.")
+    s = pd.to_numeric(df[surv_col], errors="coerce")
+    s = (s > 0).astype(int)
+    reaction = pd.to_numeric(df["ReactionTime"], errors="coerce")
+    data = pd.DataFrame({"ReactionTime": reaction, "Survived": s}).dropna()
+    if data.empty:
+        raise ValueError("No valid data for ReactionTime/Survived.")
+    data["reaction_bin"] = (data["ReactionTime"] // 10).astype(int) * 10
+    grp = data.groupby("reaction_bin")["Survived"].mean().sort_index()
+    labels = [f"{int(d)}-{int(d)+9}" for d in grp.index]
+    fig = plt.figure()
+    plt.plot(range(len(grp)), grp.values, marker="o")
+    plt.xticks(range(len(grp)), labels, rotation=30, ha="right")
+    plt.ylim(0, 1)
+    plt.ylabel("Survival rate (0-1)")
+    plt.xlabel("Reaction time (by tens)")
+    plt.title("Survival rate by reaction time")
+    out_file = out_dir / "05_survival_by_reaction_time.png"
+    fig.savefig(out_file, bbox_inches="tight", dpi=140)
+    plt.show()
+    print(f"Image saved: {out_file.resolve()}")
+
+def plot_survival_by_status(df, surv_col, out_dir):
+    out_dir = Path(out_dir)
+    out_dir.mkdir(exist_ok=True, parents=True)
+    if "Status" not in df.columns:
+        raise KeyError("No 'Status' column found in dataset.")
+    s = pd.to_numeric(df[surv_col], errors="coerce")
+    s = (s > 0).astype(int)
+    data = pd.DataFrame({"Status": df["Status"], "Survived": s}).dropna()
+    if data.empty:
+        raise ValueError("No valid data for Status/Survived.")
+    grouped = data.groupby("Status")["Survived"].mean().sort_values(ascending=False)
+    fig = plt.figure()
+    plt.bar(grouped.index, grouped.values)
+    plt.ylim(0, 1)
+    plt.ylabel("Survival rate (0-1)")
+    plt.xlabel("Status")
+    plt.title("Survival rate by status")
+    plt.xticks(rotation=30, ha="right")
+    out_file = out_dir / "06_survival_by_status.png"
+    fig.savefig(out_file, bbox_inches="tight", dpi=140)
+    plt.show()
+    print(f"Image saved: {out_file.resolve()}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--csv", default="vesuvius_survival_dataset.csv")
@@ -96,6 +169,9 @@ def main():
     plot_survival_rate(survival_rate, Path(args.out))
     plot_survival_by_age_tens(df, surv_col, args.out)
     plot_survival_by_distance_tens(df, surv_col, args.out)
+    plot_survival_by_gender(df, surv_col, args.out)
+    plot_survival_by_reaction_time(df, surv_col, args.out)
+    plot_survival_by_status(df, surv_col, args.out)
 
 if __name__ == "__main__":
     main()
