@@ -34,8 +34,24 @@ Kaggle datasets we will use :
 
 
 ## **I)Introduction** ##
-&emsp; -Motivation: Why are you doing this?
-&emsp; -What do you want to see at the end?
+&emsp; -Motivation: This project's focus is on the tragedy that occured in Pompei, which could raise some questions. Why choose an event so ancient ? Well choosing Pompei as a first subject for this AI actually hold some very important reasons.
+
+&emsp; For centuries, ancient ruins and civilization have been the center of archeology's attention : incas, azetcs, greeks and many others.  
+&emsp; Studying Pompeii through artificial intelligence is not only about understanding a single event, but about discovering broader patterns in how human societies face disaster. By analyzing who survived and why, we can uncover factors such as social structure, location, or behavior that influenced survival. These insights could then be compared with other ancient civilizations — like the Maya, the Minoans, or the Egyptians — to reveal how different cultures responded to natural catastrophes.
+&emsp; In this way, Pompeii becomes a model, a starting point to explore how humanity has always adapted, resisted, or fallen in the face of nature’s power.
+
+&emsp; By analyzing the survival factors in Pompeii, we may gain valuable insights into:
+
+&emsp; - Social hierarchies and inequality — Did people from higher social classes have a better chance to survive because of their housing, mobility, or access to information?
+
+&emsp; - Urban structure and geography — How did the design of the city influence survival? Were certain neighborhoods more exposed or more protected?
+
+&emsp; - Human behavior during crisis — Can we detect patterns of reaction, cooperation, or panic that mirror what we see in modern disasters?
+
+&emsp; - Cultural and societal resilience — What do these patterns reveal about the adaptability and organization of ancient Roman society?
+
+&emsp; - Ultimately, this project aims to bridge archaeology and artificial intelligence, showing how modern tools can help us reinterpret ancient events and perhaps even compare them with other civilizations such as the Maya, the Egyptians, or the Minoans — all of which faced natural disasters in their history.
+&emsp; By doing so, we can begin to see universal human patterns in the way societies face destruction and survival.
 
 ## **II)Datasets** ##
 &emsp; -Describing your dataset
