@@ -36,8 +36,8 @@ Kaggle datasets we will use :
 ## **I)Introduction** ##
 &emsp; -Motivation: This project's focus is on the tragedy that occured in Pompei, which could raise some questions. Why choose an event so ancient ? Well choosing Pompei as a first subject for this AI actually hold some very important reasons.
 
-&emsp; For centuries, ancient ruins and civilization have been the center of archeology's attention : incas, azetcs, greeks and many others.  
-&emsp; Studying Pompeii through artificial intelligence is not only about understanding a single event, but about discovering broader patterns in how human societies face disaster. By analyzing who survived and why, we can uncover factors such as social structure, location, or behavior that influenced survival. These insights could then be compared with other ancient civilizations — like the Maya, the Minoans, or the Egyptians — to reveal how different cultures responded to natural catastrophes.
+&emsp; For centuries, ancient ruins and civilization have been the center of archeology's attention : incas, azetcas, greeks and many others.  
+&emsp; Studying Pompeii through artificial intelligence is not only about understanding a single event, but about discovering broader patterns in how human societies face disaster. By analyzing who survived and why, we can uncover factors such as social structure, location, or behavior that influenced survival. These insights could then be compared with other ancient civilizations to reveal how different cultures responded to natural catastrophes.
 &emsp; In this way, Pompeii becomes a model, a starting point to explore how humanity has always adapted, resisted, or fallen in the face of nature’s power.
 
 &emsp; By analyzing the survival factors in Pompeii, we may gain valuable insights into:
