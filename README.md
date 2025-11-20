@@ -86,8 +86,21 @@ Kaggle datasets we will use :
 &emsp; <img width="500" height="200" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
 
 ## **V)Related Work (e.g., existing studies)** ##
-&emsp; -Tools, libraries, blogs, or any documentation that you have used to do this project.
+In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
 
+The project begins with argparse and Path, which make the program flexible and easy to run from the command line. These tools allow the user to specify file locations or configuration options without modifying the code itself. This makes the system more robust and adaptable to different datasets or environments.
+
+For data manipulation, the project relies heavily on pandas and numpy. These two libraries are essential for loading the dataset, cleaning missing values, transforming variables, and performing mathematical operations. With their powerful data structures, they make it possible to prepare the eruption dataset in a way that is both structured and efficient.
+
+To visualize the data, the project uses matplotlib.pyplot and seaborn. These libraries allow the creation of detailed and informative graphs that help reveal trends in volcanic activity, correlations between variables, and patterns hidden inside the dataset. Whether it is heatmaps, histograms, or line plots, the visual component is crucial for understanding the behavior leading up to the eruption.
+
+For the predictive modeling part, the project integrates several tools from scikit-learn. The function train_test_split divides the dataset into training and testing sets to evaluate how well the model generalizes. The RandomForestClassifier is then used to build a machine learning model capable of predicting categories or events based on the available features. To measure performance, metrics such as accuracy_score, classification_report, and confusion_matrix provide a complete evaluation of the model’s strengths and weaknesses.
+
+Additionally, the project uses preprocessing tools such as StandardScaler and LabelEncoder, which help normalize numerical features and convert categorical variables into numerical values. These steps are essential to ensure that the machine learning algorithms interpret the data correctly and perform at their best.
+
+Finally, the SciPy function uniform_filter1d is applied to smooth certain time-series data. This makes long-term volcanic trends more visible by reducing noise or abrupt variations in the dataset. Thanks to this smoothing step, the graphs become cleaner and easier to interpret.
+
+Together, all these libraries form the backbone of the project. They provide a strong foundation to explore, visualize, and model historical eruption data with modern AI techniques. This combination of tools turns raw geological information into meaningful insights that help us better understand the Pompeii eruption from a data-driven perspective.
 ## **VI)Conclusion: Discussion** ##
 
 This project demonstrates how artificial intelligence can help reinterpret historical events and extract meaningful patterns from complex scenarios such as the eruption of Mount Vesuvius. By constructing a synthetic dataset and applying machine-learning techniques—particularly the Random Forest model—we explored how demographic, social, behavioral, and geographical factors may have influenced survival during the catastrophe.
