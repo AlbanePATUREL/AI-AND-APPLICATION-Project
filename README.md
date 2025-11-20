@@ -103,7 +103,7 @@ The global survival rate is 48.8%, meaning that slightly less than half of the i
 The Y-axis represents the survival ratio from 0 to 1.
 
 &emsp; <img width="500" height="400" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
-This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.).
+This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.)
 
 Key insights:
 Children (0–9) and teens (10–19) have survival rates around 45–47%.
