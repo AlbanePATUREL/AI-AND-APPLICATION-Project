@@ -7,7 +7,7 @@
 |        Name       |        Major           |        Email              |         
 |-------------------|------------------------|---------------------------|
 | Lucas VALERION    | Computer science       |lucas.valerion@gmail.com   |
-| Thomas BUCHLER    | Computer science       |thomas.buchler@edu.ece.fr |
+| Thomas BUCHLER    | Computer science       |thomas.buchler@edu.ece.fr  |
 | Albane PATUREL    | Computer science       |albane.paturel@edu.ece.fr  |
 | Zoé BOUSQUENAUD   | Computer Science       |zoe.bousquenaud@gmail.com  |
 
@@ -83,7 +83,7 @@ Kaggle datasets we will use :
 &emsp; -Explaining features or code (if any)
 
 ## **IV)Evaluation & Analysis** ##
-&emsp; -Graphs, tables, any statistics (if any)
+&emsp; <img width="500" height="200" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
 
 ## **V)Related Work (e.g., existing studies)** ##
 &emsp; -Tools, libraries, blogs, or any documentation that you have used to do this project.
