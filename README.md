@@ -100,16 +100,33 @@ Taken together, this methodological approach follows a complete data science pip
 Almost half the population survived
 This bar chart shows the overall survival rate of the population in the dataset.
 The global survival rate is 48.8%, meaning that slightly less than half of the individuals survived the event (e.g., the volcanic eruption).
-
 The Y-axis represents the survival ratio from 0 to 1.
 
-AI Note: This is our target variable distribution - crucial for model training!
-&emsp; <img width="500" height="200" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
-&emsp; <img width="500" height="200" alt="grapheSurvivalDistance" src="plots\03_survival_by_distance_tens.png" />
-&emsp; <img width="500" height="200" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
-&emsp; <img width="500" height="200" alt="grapheSurvivalReacTime" src="plots\05_survival_by_reaction_time.png" />
-&emsp; <img width="500" height="200" alt="grapheSurvivalStatus" src="plots\06_survival_by_status.png" />
-&emsp; <img width="500" height="200" alt="graphe4" src="plots\00_model_analysis.png" />
+&emsp; <img width="500" height="400" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
+This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.).
+
+Key insights:
+Children (0–9) and teens (10–19) have survival rates around 45–47%.
+Young adults (20–39) show slightly higher survival rates, reaching around 50–53%.
+Middle-aged groups (40–59) drop back to around 44–46%.
+Older adults (70–79) show the highest survival rate, reaching ~71% in this dataset.
+
+This suggests that survival does not follow a simple decreasing trend with age; instead, it varies depending on specific circumstances of the population.
+
+&emsp; <img width="500" height="400" alt="grapheSurvivalDistance" src="plots\03_survival_by_distance_tens.png" />
+This graph shows how survival changes based on the distance from the volcano, grouped in 10-km brackets.
+There is a clear positive correlation:
+At 0–9 km, survival is very low (~20%).
+Survival increases steadily with distance.
+At 40–49 km, the survival rate reaches ~75%.
+
+This indicates that distance from the eruption center was one of the strongest predictors of survival:
+=> The farther away people were, the more likely they were to survive.
+
+&emsp; <img width="500" height="400" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
+&emsp; <img width="500" height="400" alt="grapheSurvivalReacTime" src="plots\05_survival_by_reaction_time.png" />
+&emsp; <img width="500" height="400" alt="grapheSurvivalStatus" src="plots\06_survival_by_status.png" />
+&emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
