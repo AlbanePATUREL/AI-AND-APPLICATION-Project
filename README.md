@@ -92,7 +92,23 @@ After validation, the trained model was applied to the entire dataset in order t
 Taken together, this methodological approach follows a complete data science pipeline, beginning with exploration, followed by preprocessing, modeling, evaluation, and visualization. This ensures both methodological rigor and interpretability, allowing for a clear understanding of the factors influencing survival and for an assessment of the model’s reliability in predicting outcomes within the simulated dataset.
 
 ## **IV)Evaluation & Analysis** ##
+&emsp;##1)Global Survival rate##
 &emsp; <img width="500" height="200" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
+48.8% global survival rate
+
+Almost half the population survived
+This bar chart shows the overall survival rate of the population in the dataset.
+The global survival rate is 48.8%, meaning that slightly less than half of the individuals survived the event (e.g., the volcanic eruption).
+
+The Y-axis represents the survival ratio from 0 to 1.
+
+AI Note: This is our target variable distribution - crucial for model training!
+&emsp; <img width="500" height="200" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
+&emsp; <img width="500" height="200" alt="grapheSurvivalDistance" src="plots\03_survival_by_distance_tens.png" />
+&emsp; <img width="500" height="200" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
+&emsp; <img width="500" height="200" alt="grapheSurvivalReacTime" src="plots\05_survival_by_reaction_time.png" />
+&emsp; <img width="500" height="200" alt="grapheSurvivalStatus" src="plots\06_survival_by_status.png" />
+&emsp; <img width="500" height="200" alt="graphe4" src="plots\00_model_analysis.png" />
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
