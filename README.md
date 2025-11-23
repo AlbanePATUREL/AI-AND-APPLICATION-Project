@@ -124,9 +124,31 @@ This indicates that distance from the eruption center was one of the strongest p
 => The farther away people were, the more likely they were to survive.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
+
+This graph shows how survival varies between men and women. The two proportions are almost identical, indicating no meaningful difference in survival rates between genders. Any small variations fall within what could be expected by chance.
+This suggests that gender was not a significant predictor of survival during the event: → Men and women survived at roughly the same rate.
+
 &emsp; <img width="500" height="400" alt="grapheSurvivalReacTime" src="plots\05_survival_by_reaction_time.png" />
+
+This graph displays survival outcomes based on reaction time categories. Across all groups—from fast responders to slower ones—the survival percentages remain very similar. There is no clear upward or downward trend.
+This indicates that reaction time did not play a major role in determining survival: → People survived at comparable rates regardless of how quickly they reacted.
+
 &emsp; <img width="500" height="400" alt="grapheSurvivalStatus" src="plots\06_survival_by_status.png" />
+
+This graph shows how survival rates change according to social status. A clear negative pattern is visible: individuals with lower social status have noticeably higher survival rates, while those of higher status show reduced survival.
+This suggests that social status was a strong predictor of survival: → The lower someone’s social status, the more likely they were to survive.
+
 &emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
+
+This first graph shows how survival changes as the distance from the volcano increases. The trend is clearly positive: survival is lowest near the eruption center, then steadily rises with distance. At larger distances, survival becomes significantly higher.
+This indicates that distance was one of the strongest determinants of survival: → The farther people were from the volcano, the more likely they were to survive.
+This second graph ranks the factors that most influenced survival. Distance appears clearly as the dominant predictor, far ahead of the others. The remaining variables—such as gender or reaction time—have much weaker effects.
+This indicates that distance played the primary role in shaping survival outcomes, whereas other factors contributed only marginally: → Distance is the most influential variable by a wide margin.
+The third graph shows the correlation matrix between all variables. Overall, the pattern is quite dispersed, with most correlations being weak or close to zero. There is no strong linear relationship between most pairs of variables.
+This suggests that the variables are largely independent from one another: → No major correlations stand out in the dataset.
+Then the last graph compares the model’s predicted survival values with the actual observed survival rates. The two curves (or sets of points) follow each other closely, with only small deviations.
+This indicates that the model provides a good approximation of reality: → Predicted survival and actual survival are very similar overall.
+
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
