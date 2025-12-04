@@ -85,7 +85,11 @@ After validation, the trained model was applied to the entire dataset in order t
 
 Taken together, this methodological approach follows a complete data science pipeline, beginning with exploration, followed by preprocessing, modeling, evaluation, and visualization. This ensures both methodological rigor and interpretability, allowing for a clear understanding of the factors influencing survival and for an assessment of the model’s reliability in predicting outcomes within the simulated dataset.
 
+ADD CODE SUR RANDOMFOREST
+
 ## **IV)Evaluation & Analysis** ##
+
+ADD CODE SUR GRAPHE
 &emsp;1)Global Survival rate
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
