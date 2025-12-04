@@ -91,7 +91,6 @@ ADD CODE SUR RANDOMFOREST-> ALBANE
 
 ## **IV)Evaluation & Analysis** ##
 
-ADD CODE SUR GRAPHE -> LUCAS
 &emsp;1)Global Survival rate
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
@@ -101,6 +100,39 @@ Almost half the population survived
 This bar chart shows the overall survival rate of the population in the dataset.
 The global survival rate is 48.8%, meaning that slightly less than half of the individuals survived the event (e.g., the volcanic eruption).
 The Y-axis represents the survival ratio from 0 to 1.
+
+Code for Survival rate by Age graph : 
+```
+def plot_survival_by_age_tens(data, out_dir):
+    """Survival rate by age decade"""
+    age = pd.to_numeric(data["Age"], errors="coerce")
+    survived = pd.to_numeric(data["Survived"], errors="coerce")
+    df = pd.DataFrame({"Age": age, "Survived": survived}).dropna()
+    
+    if df.empty:
+        return
+    
+    df["age_decade"] = (df["Age"] // 10).astype(int) * 10
+    grp = df.groupby("age_decade")["Survived"].mean().sort_index()
+    labels = [f"{int(d)}-{int(d)+9}" for d in grp.index]
+    
+    fig = plt.figure(figsize=(10, 6))
+    plt.plot(range(len(grp)), grp.values, marker="o", linewidth=2, markersize=8, color='darkblue')
+    plt.xticks(range(len(grp)), labels, rotation=30, ha="right")
+    plt.ylim(0, 1)
+    plt.ylabel("Survival rate (0-1)")
+    plt.xlabel("Age (decades)")
+    plt.title("Survival Rate by Age", fontweight='bold')
+    plt.grid(True, alpha=0.3)
+    
+    out_file = out_dir / "02_survival_by_age_tens.png"
+    fig.savefig(out_file, bbox_inches="tight", dpi=140)
+    plt.show()
+    print(f"✓ Chart saved: {out_file}")
+```
+
+Technical Implementation: 
+To create this visualization, the code first transforms the continuous Age variable into decadal bins using integer division (floor division by 10, multiplied by 10). This creates distinct cohorts (e.g., 20s, 30s). We then utilize the Pandas groupby() function to aggregate these cohorts and calculate the .mean() of the binary 'Survived' column (0 or 1). This mathematical operation effectively converts the binary data into a survival probability rate for each age group. The trend is then plotted using Matplotlib with distinct markers to highlight the variation between decades.
 
 &emsp; <img width="500" height="400" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
 This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.)
@@ -123,6 +155,31 @@ At 40–49 km, the survival rate reaches ~75%.
 This indicates that distance from the eruption center was one of the strongest predictors of survival:
 => The farther away people were, the more likely they were to survive.
 
+Code for Survival rate by Gender graphe :
+```
+def plot_survival_by_gender(data, out_dir):
+    """Survival rate by gender"""
+    gender_col = "Sex" if "Sex" in data.columns else "Gender"
+    survived = pd.to_numeric(data["Survived"], errors="coerce")
+    df = pd.DataFrame({"Gender": data[gender_col], "Survived": survived}).dropna()
+    
+    grouped = df.groupby("Gender")["Survived"].mean()
+    
+    fig = plt.figure(figsize=(8, 6))
+    plt.bar(grouped.index, grouped.values, color=['lightcoral', 'lightblue'], alpha=0.7)
+    plt.ylim(0, 1)
+    plt.ylabel("Survival rate (0-1)")
+    plt.xlabel("Gender")
+    plt.title("Survival Rate by Gender", fontweight='bold')
+    plt.grid(axis='y', alpha=0.3)
+    
+    out_file = out_dir / "04_survival_by_gender.png"
+    fig.savefig(out_file, bbox_inches="tight", dpi=140)
+    plt.show()
+    print(f"✓ Chart saved: {out_file}")
+```
+Technical Implementation: To create this graph, the script first identifies the gender column. It then uses the Pandas groupby() function to split the data into two groups: Male and Female. To find the survival rate, the code simply calculates the average (.mean()) of the 'Survived' column. Since the data uses 0 for deceased and 1 for survivor, the average gives us the exact percentage of survivors. Finally, the results are displayed as a bar chart using specific colors (light coral and light blue) to easily distinguish between the two groups.
+
 &emsp; <img width="500" height="400" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
 
 This graph shows how survival varies between men and women. The two proportions are almost identical, indicating no meaningful difference in survival rates between genders. Any small variations fall within what could be expected by chance.
@@ -137,6 +194,111 @@ This indicates that reaction time did not play a major role in determining survi
 
 This graph shows how survival rates change according to social status. A clear negative pattern is visible: individuals with lower social status have noticeably higher survival rates, while those of higher status show reduced survival.
 This suggests that social status was a strong predictor of survival: → The lower someone’s social status, the more likely they were to survive.
+
+Code for the graph below :
+```
+def create_visualizations(data, X, y, rf_model, scaler, X_test, y_test, 
+                         y_pred, y_pred_proba, out_dir="plots"):
+    """Create all visualizations"""
+    out_path = Path(out_dir)
+    out_path.mkdir(exist_ok=True, parents=True)
+    
+    # Prepare data for charts - encoding for correlation
+    data_clean = data.drop(['PassengerId', 'Name'], axis=1, errors='ignore').copy()
+    
+    # Encode categorical columns for correlation
+    for col in data_clean.select_dtypes(include=['object']).columns:
+        if col in data_clean.columns:
+            le = LabelEncoder()
+            data_clean[col] = le.fit_transform(data_clean[col])
+    
+    correlation_matrix = data_clean.corr(numeric_only=True)
+    
+    feature_importance = pd.DataFrame({
+        'feature': X.columns,
+        'importance': rf_model.feature_importances_
+    }).sort_values('importance', ascending=False)
+    
+    print("\n" + "="*70)
+    print("FEATURE IMPORTANCE")
+    print("="*70)
+    print(feature_importance)
+    
+    # Figure 1: 4 main model charts
+    fig1, axes = plt.subplots(2, 2, figsize=(15, 12))
+    
+    # 1. Survival probability vs Distance
+    if 'DistanceFromV' in X.columns:
+        distance_idx = list(X.columns).index('DistanceFromV')
+        distances_test = X_test[:, distance_idx] * scaler.scale_[distance_idx] + scaler.mean_[distance_idx]
+        survival_proba_test = y_pred_proba[:, 1]
+        
+        sort_idx = np.argsort(distances_test)
+        distances_sorted = distances_test[sort_idx]
+        proba_sorted = survival_proba_test[sort_idx]
+        
+        axes[0, 0].scatter(distances_test[y_test == 0], survival_proba_test[y_test == 0], 
+                           alpha=0.6, c='red', label='Actually Deceased', s=50, edgecolors='darkred')
+        axes[0, 0].scatter(distances_test[y_test == 1], survival_proba_test[y_test == 1], 
+                           alpha=0.6, c='green', label='Actually Survived', s=50, edgecolors='darkgreen')
+        
+        window = 10
+        if len(distances_sorted) >= window:
+            proba_smooth = uniform_filter1d(proba_sorted, size=window)
+            axes[0, 0].plot(distances_sorted, proba_smooth, 'b-', linewidth=2.5, 
+                            label='Trend', alpha=0.8)
+        
+        axes[0, 0].axhline(y=0.5, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='50% Threshold')
+        axes[0, 0].set_title('Survival Probability vs Distance from Vesuvius', fontweight='bold', fontsize=12)
+        axes[0, 0].set_xlabel('Distance from Vesuvius (km)')
+        axes[0, 0].set_ylabel('Survival Probability')
+        axes[0, 0].legend(loc='best')
+        axes[0, 0].grid(True, alpha=0.3)
+        axes[0, 0].set_ylim(-0.05, 1.05)
+    
+    # 2. Feature importance
+    feature_importance.plot(x='feature', y='importance', kind='barh', ax=axes[0, 1])
+    axes[0, 1].set_title('Feature Importance', fontweight='bold', fontsize=12)
+    axes[0, 1].set_xlabel('Importance')
+    
+    # 3. Correlation matrix
+    sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', 
+                center=0, ax=axes[1, 0], vmin=-1, vmax=1, 
+                cbar_kws={'label': 'Correlation coefficient'})
+    axes[1, 0].set_title('Correlation Matrix between Variables', fontweight='bold', fontsize=12)
+    axes[1, 0].set_xticklabels(axes[1, 0].get_xticklabels(), rotation=45, ha='right')
+    axes[1, 0].set_yticklabels(axes[1, 0].get_yticklabels(), rotation=0)
+    
+    # 4. Actual vs Predicted comparison
+    axes[1, 1].scatter(range(len(y_test)), y_test, alpha=0.5, label='Actual', s=30)
+    axes[1, 1].scatter(range(len(y_pred)), y_pred, alpha=0.5, label='Predicted', s=30, marker='x')
+    axes[1, 1].set_title('Comparison: Actual vs Predicted Survival', fontweight='bold', fontsize=12)
+    axes[1, 1].set_xlabel('Sample index')
+    axes[1, 1].set_ylabel('Survival (0=No, 1=Yes)')
+    axes[1, 1].legend()
+    axes[1, 1].grid(True, alpha=0.3)
+    
+    plt.tight_layout()
+    fig1.savefig(out_path / "00_model_analysis.png", dpi=140, bbox_inches='tight')
+    plt.show()
+    print(f"\n✓ Chart saved: {out_path / '00_model_analysis.png'}")
+    
+    # Individual charts by factor
+    plot_survival_rate(y, out_path)
+    plot_survival_by_age_tens(data, out_path)
+    plot_survival_by_distance_tens(data, out_path)
+    
+    if 'Sex' in data.columns or 'Gender' in data.columns:
+        plot_survival_by_gender(data, out_path)
+    
+    if 'ReactionTime' in data.columns:
+        plot_survival_by_reaction_time(data, out_path)
+    
+    if 'Status' in data.columns:
+        plot_survival_by_status(data, out_path)
+```
+Technical Implementation:
+To construct this complex visualization, the script initializes a Matplotlib figure with a 2x2 subplot grid, allowing for the simultaneous display of four distinct analytical dimensions. For the survival probability chart, the code segregates test data by outcome to color-code the scatter plot and applies a uniform_filter1d function to compute a rolling average, generating the smooth blue trend line that visualizes probability distribution. The feature importance chart is derived directly from the trained Random Forest attributes, while the correlation matrix utilizes the Pandas corr() method rendered through a Seaborn heatmap with annotated coefficients. The final verification chart is achieved by superimposing two scatter plots sharing the same index, enabling a direct visual comparison between the ground truth and the model's predictions.
 
 &emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
 
