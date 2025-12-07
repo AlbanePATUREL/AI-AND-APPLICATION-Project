@@ -87,7 +87,41 @@ After validation, the trained model was applied to the entire dataset in order t
 
 Taken together, this methodological approach follows a complete data science pipeline, beginning with exploration, followed by preprocessing, modeling, evaluation, and visualization. This ensures both methodological rigor and interpretability, allowing for a clear understanding of the factors influencing survival and for an assessment of the model’s reliability in predicting outcomes within the simulated dataset.
 
-ADD CODE SUR RANDOMFOREST-> ALBANE
+1. Purpose and Imports
+
+The test.py script is designed as a quick exploratory tool. It imports common scientific Python libraries used for handling data and generating visualizations. These libraries allow the script to load the CSV file, inspect basic relationships between variables, and create a histogram comparing the ages of survivors and non-survivors.
+
+import numpy as np 
+import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+
+2. Loading the Dataset
+
+The script reads the dataset into a pandas DataFrame, which makes the data easy to examine and manipulate.
+
+df=pd.read_csv("vesuvius_survival_dataset.csv")
+
+3. Printing Survival Rates Based on Selected Variables
+
+The script then looks at four variables—DistanceFromV, WealthIndex, ShelterAccess, and Status—to see how each relates to survival. It groups the data by each variable and computes the average survival rate, printing the results for quick inspection.
+
+var=['DistanceFromV','WealthIndex','ShelterAccess','Status']
+for i in var:
+    print('Survival depending on :', i)
+    df2=df.groupby(i)['Survived'].mean().reset_index()
+    print(df2)
+
+4. Histogram of Age by Survival Status
+
+Finally, the script creates two overlapping histograms: one showing the ages of people who survived, and one showing the ages of those who did not. This allows a visual comparison of the age distribution across both groups.
+
+fig = go.Figure()
+fig.add_trace(go.Histogram(x=df[df['Survived']==0]['Age'], name='Not Survived', opacity=0.5))
+fig.add_trace(go.Histogram(x=df[df['Survived']==1]['Age'], name='Survived', opacity=0.5))
+fig.update_layout(barmode='overlay', title='Age Distribution by Survival', xaxis_title='Age', yaxis_title='Count')
+fig.show()
 
 ## **IV)Evaluation & Analysis** ##
 
