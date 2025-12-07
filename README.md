@@ -87,6 +87,8 @@ After validation, the trained model was applied to the entire dataset in order t
 
 Taken together, this methodological approach follows a complete data science pipeline, beginning with exploration, followed by preprocessing, modeling, evaluation, and visualization. This ensures both methodological rigor and interpretability, allowing for a clear understanding of the factors influencing survival and for an assessment of the model’s reliability in predicting outcomes within the simulated dataset.
 
+Fist, we do a test program.
+
 1. Purpose and Imports
 
 The test.py script is designed as a quick exploratory tool. It imports common scientific Python libraries used for handling data and generating visualizations. These libraries allow the script to load the CSV file, inspect basic relationships between variables, and create a histogram comparing the ages of survivors and non-survivors.
@@ -122,6 +124,106 @@ fig.add_trace(go.Histogram(x=df[df['Survived']==0]['Age'], name='Not Survived', 
 fig.add_trace(go.Histogram(x=df[df['Survived']==1]['Age'], name='Survived', opacity=0.5))
 fig.update_layout(barmode='overlay', title='Age Distribution by Survival', xaxis_title='Age', yaxis_title='Count')
 fig.show()
+```
+
+Then, we can do this program to setup randomforest.
+
+1. Loading and Exploring the Dataset
+
+The randomforest.py script begins by loading the CSV and printing basic information about the data, such as column types and summary statistics. This helps verify that the dataset is clean and ready for analysis.
+```
+def load_and_explore_data(csv_file):
+    df = pd.read_csv(csv_file)
+    print(df.head())
+    print(df.info())
+    print(df.describe())
+    return df
+```
+2. Preparing the Data for Machine Learning
+
+Next, unnecessary columns like PassengerId and Name are removed. Categorical variables such as Sex, Status, and Gender are encoded into numerical values, and the dataset is split into features (X) and labels (y).
+```
+def prepare_data(df):
+    df = df.drop(columns=['PassengerId', 'Name'], errors='ignore')
+    encoder = LabelEncoder()
+    for col in ['Sex', 'Status', 'Gender']:
+        if col in df.columns:
+            df[col] = encoder.fit_transform(df[col].astype(str))
+    X = df.drop("Survived", axis=1)
+    y = df["Survived"]
+    return X, y
+```
+3. Training the Random Forest Model
+
+The data is standardized, split into training and testing sets, and then passed into a Random Forest classifier. Parameters such as depth and minimum samples per split are controlled to avoid overfitting.
+```
+def train_model(X, y):
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_scaled, y, test_size=0.3, random_state=42, stratify=y
+    )
+
+    model = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=10,
+        min_samples_split=5,
+        min_samples_leaf=2,
+        random_state=42
+    )
+    model.fit(X_train, y_train)
+
+    predictions = model.predict(X_test)
+    print("Accuracy:", accuracy_score(y_test, predictions))
+    print(classification_report(y_test, predictions))
+    return model, scaler
+```
+4. Predicting Survival for the Entire Dataset
+
+After training, the model is used to predict survival outcomes for the full dataset.
+```
+def predict_full_dataset(model, scaler, X):
+    X_scaled = scaler.transform(X)
+    predictions = model.predict(X_scaled)
+    return predictions
+```
+5. Saving Predictions to a CSV
+
+The predictions are saved to a CSV file so they can be used or visualized later.
+```
+def save_predictions(df, predictions, filename="predictions.csv"):
+    df_out = pd.DataFrame({
+        "PassengerId": df.get("PassengerId", range(len(predictions))),
+        "PredictedSurvived": predictions
+    })
+    df_out.to_csv(filename, index=False)
+```
+6. Creating Machine Learning Visualizations
+
+The script generates several visualizations: a correlation matrix, feature-importance plots, and graphs relating predictions to variables like age and distance.
+```
+def create_visualizations(df, predictions, out_dir="visualizations"):
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(df.corr(), annot=True, cmap='coolwarm')
+    plt.title("Correlation Matrix")
+    plt.savefig(os.path.join(out_dir, "correlation_matrix.png"))
+    plt.close()
+```
+7. The Main Pipeline
+
+Finally, the script ties everything together in one workflow.
+```
+def main():
+    df = load_and_explore_data("vesuvius_survival_dataset.csv")
+    X, y = prepare_data(df)
+    model, scaler = train_model(X, y)
+    predictions = predict_full_dataset(model, scaler, X)
+    save_predictions(df, predictions)
+    create_visualizations(df, predictions)
 ```
 ## **IV)Evaluation & Analysis** ##
 
