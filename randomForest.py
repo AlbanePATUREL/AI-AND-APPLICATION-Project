@@ -41,7 +41,7 @@ def load_and_explore_data(csv_path, sep=",", encoding="utf-8"):
 def prepare_data(data):
     """Prepare data for training"""
     # Copy to avoid modifying original
-    data_clean = data.drop(['PassengerId', 'Name'], axis=1, errors='ignore')
+    data_clean = data.drop(['CivilianId', 'Name'], axis=1, errors='ignore')
     
     # Encode categorical variables
     label_encoders = {}
@@ -142,13 +142,13 @@ def predict_full_dataset(rf_model, scaler, X, y, data):
 def save_predictions(data, predictions_full, output_file="vesuvius_survival_predictions.csv"):
     """Save predictions to CSV file"""
     output_df = pd.DataFrame({
-        'PassengerId': data['PassengerId'],
+        'CivilianId': data['CivilianId'],
         'Survived': predictions_full
     })
     
     output_df.to_csv(output_file, index=False)
     print(f"\n✓ Results saved to '{output_file}'")
-    print(f"✓ Format: PassengerId,Survived")
+    print(f"✓ Format: CivilianId,Survived")
     print(f"✓ Total records: {len(output_df)}")
 
 
@@ -159,7 +159,7 @@ def create_visualizations(data, X, y, rf_model, scaler, X_test, y_test,
     out_path.mkdir(exist_ok=True, parents=True)
     
     # Prepare data for charts - encoding for correlation
-    data_clean = data.drop(['PassengerId', 'Name'], axis=1, errors='ignore').copy()
+    data_clean = data.drop(['CivilianId', 'Name'], axis=1, errors='ignore').copy()
     
     # Encode categorical columns for correlation
     for col in data_clean.select_dtypes(include=['object']).columns:
