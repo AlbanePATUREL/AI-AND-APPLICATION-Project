@@ -413,7 +413,7 @@ Inspired by these sources for the dataset : [Titanic Survival](https://www.kaggl
 
 Inspired by these sources for RandomForest Regressor : [SkLearn_RandomForest_Regressor1](https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [Randomforest_regression](https://www.geeksforgeeks.org/random-forest-regression-in-python/)
 
-Inspired by these sources for the general project : [Titanic Survival](https://github.com/chiiyokii/AI_Project)
+Inspired by these sources for the general project : [previous AI Project predicting housing prices](https://github.com/chiiyokii/AI_Project)
 
 Inspired by these sources for SkLearn Pipelines : [SkLearn_Pipeline](https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html), [SkLearn_Pipeline2](https://velog.io/@imfromk/MLsklearn-Pipeline)
 
