@@ -185,8 +185,7 @@ def main():
 
 &emsp;1)Global Survival rate
 
-&emsp; <img width="967" height="737" alt="01_overall_survival_rate" src="https://github.com/user-attachments/assets/10d273e7-e678-4fd9-a2a2-dfe60704dd2e" />
-
+&emsp; <img width="500" height="400" alt="01_overall_survival_rate" src="https://github.com/user-attachments/assets/10d273e7-e678-4fd9-a2a2-dfe60704dd2e" />
 
 48.8% global survival rate
 
@@ -228,6 +227,8 @@ def plot_survival_by_age_tens(data, out_dir):
 To create this visualization, the code first transforms the continuous Age variable into decadal bins using integer division (floor division by 10, multiplied by 10). This creates distinct cohorts (e.g., 20s, 30s). We then utilize the Pandas groupby() function to aggregate these cohorts and calculate the .mean() of the binary 'Survived' column (0 or 1). This mathematical operation effectively converts the binary data into a survival probability rate for each age group. The trend is then plotted using Matplotlib with distinct markers to highlight the variation between decades.
 
 &emsp; <img width="500" height="400" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
+<img width="500" height="400" alt="02_survival_by_age_tens" src="https://github.com/user-attachments/assets/180055cb-e1f5-4fea-a76a-104582e12c32" />
+
 This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.)
 
 Children (0–9) and teens (10–19) have survival rates around 45–47%.
@@ -238,6 +239,8 @@ Older adults (70–79) show the highest survival rate, reaching ~71% in this dat
 This suggests that survival does not follow a simple decreasing trend with age; instead, it varies depending on specific circumstances of the population.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalDistance" src="plots\03_survival_by_distance_tens.png" />
+<img width="1184" height="807" alt="03_survival_by_distance_tens" src="https://github.com/user-attachments/assets/6ac90560-f340-4f91-8613-13f08512a8cc" />
+
 This graph shows how survival changes based on the distance from the volcano, grouped in 10-km brackets.
 There is a clear positive correlation:
 At 0–9 km, survival is very low (~20%).
@@ -273,16 +276,19 @@ def plot_survival_by_gender(data, out_dir):
 To create this graph, the script first identifies the gender column. It then uses the Pandas groupby() function to split the data into two groups: Male and Female. To find the survival rate, the code simply calculates the average (.mean()) of the 'Survived' column. Since the data uses 0 for deceased and 1 for survivor, the average gives us the exact percentage of survivors. Finally, the results are displayed as a bar chart using specific colors (light coral and light blue) to easily distinguish between the two groups.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
+<img width="967" height="763" alt="04_survival_by_gender" src="https://github.com/user-attachments/assets/182007ac-0a99-4164-8170-744291b70ea3" />
 
 This graph shows how survival varies between men and women. The two proportions are almost identical, indicating no meaningful difference in survival rates between genders. Any small variations fall within what could be expected by chance.
 This suggests that gender was not a significant predictor of survival during the event: → Men and women survived at roughly the same rate.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalReacTime" src="plots\05_survival_by_reaction_time.png" />
+<img width="1184" height="789" alt="05_survival_by_reaction_time" src="https://github.com/user-attachments/assets/b91067c0-ba85-4f3e-8430-2c1a9549d43b" />
 
 This graph displays survival outcomes based on reaction time categories. Across all groups—from fast responders to slower ones—the survival percentages remain very similar. There is no clear upward or downward trend.
 This indicates that reaction time did not play a major role in determining survival: → People survived at comparable rates regardless of how quickly they reacted.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalStatus" src="plots\06_survival_by_status.png" />
+<img width="1184" height="794" alt="06_survival_by_status" src="https://github.com/user-attachments/assets/684cb159-9e63-48fb-b44d-3857effb090f" />
 
 This graph shows how survival rates change according to social status. A clear negative pattern is visible: individuals with lower social status have noticeably higher survival rates, while those of higher status show reduced survival.
 This suggests that social status was a strong predictor of survival: → The lower someone’s social status, the more likely they were to survive.
@@ -393,6 +399,7 @@ def create_visualizations(data, X, y, rf_model, scaler, X_test, y_test,
 To construct this complex visualization, the script initializes a Matplotlib figure with a 2x2 subplot grid, allowing for the simultaneous display of four distinct analytical dimensions. For the survival probability chart, the code segregates test data by outcome to color-code the scatter plot and applies a uniform_filter1d function to compute a rolling average, generating the smooth blue trend line that visualizes probability distribution. The feature importance chart is derived directly from the trained Random Forest attributes, while the correlation matrix utilizes the Pandas corr() method rendered through a Seaborn heatmap with annotated coefficients. The final verification chart is achieved by superimposing two scatter plots sharing the same index, enabling a direct visual comparison between the ground truth and the model's predictions.
 
 &emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
+<img width="2085" height="1666" alt="00_model_analysis" src="https://github.com/user-attachments/assets/44416667-0454-4dbc-8400-93c36730a0a3" />
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
