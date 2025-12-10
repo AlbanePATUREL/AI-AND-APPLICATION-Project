@@ -52,7 +52,7 @@ Kaggle datasets we will use :
 ## **II)Datasets** ##
 &emsp; The Vesuvius Survival dataset contains 500 observations, each representing an individual who lived near Mount Vesuvius during a simulated catastrophic event. It includes 11 variables that describe demographic, social, behavioral, and geographical aspects of these individuals. The primary goal of this dataset appears to be identifying the factors that influenced survival likelihood during the eruption. The dataset is entirely complete, with no missing values, making it clean and ready for analysis.
 
-&emsp; The first column, PassengerId, is a simple numerical identifier ranging from 1 to 500. It serves solely as a unique key to distinguish individuals and carries no analytical significance. The key outcome variable is Survived, which indicates whether a person lived or died during the event. It is binary: 1 represents survival, while 0 indicates death. The mean value of 0.488 suggests that approximately 48.8% of the individuals survived, showing a nearly balanced distribution between survivors and non-survivors.
+&emsp; The first column, CivilianId, is a simple numerical identifier ranging from 1 to 500. It serves solely as a unique key to distinguish individuals and carries no analytical significance. The key outcome variable is Survived, which indicates whether a person lived or died during the event. It is binary: 1 represents survival, while 0 indicates death. The mean value of 0.488 suggests that approximately 48.8% of the individuals survived, showing a nearly balanced distribution between survivors and non-survivors.
 
 &emsp; The variable DistanceFromV represents the individual’s distance from Mount Vesuvius, likely measured in kilometers. The values range from 0.07 to 49.99 km, with an average of about 25 km. This variable captures a major geographical factor — the farther a person was from the volcano, the higher their chance of survival. It is likely to be one of the most influential predictors in the dataset.
 
@@ -77,7 +77,7 @@ Kaggle datasets we will use :
 ## **III)Methodology** ##
 &emsp; -Explaining your choice of algorithms (methods, any modelsfrom AIML libraries)
 &emsp; -Explaining features or code (if any)
-The dataset used in this study was first imported and examined to understand its structure and content. An initial exploration was conducted by viewing sample rows, inspecting variable types, and generating descriptive statistics. This stage made it possible to identify irrelevant fields such as PassengerId and Name, which were removed because they carried no predictive value. The exploration also provided a preliminary understanding of the distribution of key factors such as age, distance from Vesuvius, wealth index, reaction time, and social status, helping form hypotheses about which variables might influence survival likelihood.
+The dataset used in this study was first imported and examined to understand its structure and content. An initial exploration was conducted by viewing sample rows, inspecting variable types, and generating descriptive statistics. This stage made it possible to identify irrelevant fields such as CivilianId and Name, which were removed because they carried no predictive value. The exploration also provided a preliminary understanding of the distribution of key factors such as age, distance from Vesuvius, wealth index, reaction time, and social status, helping form hypotheses about which variables might influence survival likelihood.
 
 Before training the predictive model, the dataset underwent a series of preprocessing steps. All categorical variables, including sex, social status, and gender, were encoded into numerical values using a label encoder to ensure compatibility with machine learning algorithms. The dataset was then split into features (X) and target (y), with the target variable representing survival. To ensure fair comparison between variables and avoid scale imbalances, all numerical features were standardized with a StandardScaler. The observations were divided into training and testing sets using an 80/20 split, stratified on the target variable to maintain a representative distribution of survivors and non-survivors in both subsets.
 
@@ -100,10 +100,10 @@ def load_and_explore_data(csv_file):
 ```
 2. Preparing the Data for Machine Learning
 
-Next, unnecessary columns like PassengerId and Name are removed. Categorical variables such as Sex, Status, and Gender are encoded into numerical values, and the dataset is split into features (X) and labels (y).
+Next, unnecessary columns like CivilianId and Name are removed. Categorical variables such as Sex, Status, and Gender are encoded into numerical values, and the dataset is split into features (X) and labels (y).
 ```
 def prepare_data(df):
-    df = df.drop(columns=['PassengerId', 'Name'], errors='ignore')
+    df = df.drop(columns=['CivilianId', 'Name'], errors='ignore')
     encoder = LabelEncoder()
     for col in ['Sex', 'Status', 'Gender']:
         if col in df.columns:
@@ -153,7 +153,7 @@ The predictions are saved to a CSV file so they can be used or visualized later.
 ```
 def save_predictions(df, predictions, filename="predictions.csv"):
     df_out = pd.DataFrame({
-        "PassengerId": df.get("PassengerId", range(len(predictions))),
+        "CivilianId": df.get("CivilianId", range(len(predictions))),
         "PredictedSurvived": predictions
     })
     df_out.to_csv(filename, index=False)
@@ -299,7 +299,7 @@ def create_visualizations(data, X, y, rf_model, scaler, X_test, y_test,
     out_path.mkdir(exist_ok=True, parents=True)
     
     # Prepare data for charts - encoding for correlation
-    data_clean = data.drop(['PassengerId', 'Name'], axis=1, errors='ignore').copy()
+    data_clean = data.drop(['CivilianId', 'Name'], axis=1, errors='ignore').copy()
     
     # Encode categorical columns for correlation
     for col in data_clean.select_dtypes(include=['object']).columns:
