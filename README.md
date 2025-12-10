@@ -409,11 +409,14 @@ Finally, the SciPy function uniform_filter1d is applied to smooth certain time-s
 
 Together, all these libraries form the backbone of the project. They provide a strong foundation to explore, visualize, and model historical eruption data with modern AI techniques. This combination of tools turns raw geological information into meaningful insights that help us better understand the Pompeii eruption from a data-driven perspective.
 
-Inspired by these sources for the dataset : https://www.kaggle.com/code/mrisdal/exploring-survival-on-the-titanic/report
+Inspired by these sources for the dataset : [Titanic Survival](https://www.kaggle.com/code/mrisdal/exploring-survival-on-the-titanic/report)
 
-Inspired by these sources for RandomForest Regressor : SkLearn_RandomForest_Regressor1, Randomforest_regression
+Inspired by these sources for RandomForest Regressor : [SkLearn_RandomForest_Regressor1](https://scikit-learn.org/1.5/modules/generated/sklearn.ensemble.RandomForestRegressor.html), [Randomforest_regression](https://www.geeksforgeeks.org/random-forest-regression-in-python/)
 
-Inspired by these sources for the general project : https://github.com/chiiyokii/AI_Project
+Inspired by these sources for the general project : [Titanic Survival](https://github.com/chiiyokii/AI_Project)
+
+Inspired by these sources for SkLearn Pipelines : [SkLearn_Pipeline](https://scikit-learn.org/1.5/modules/generated/sklearn.pipeline.Pipeline.html), [SkLearn_Pipeline2](https://velog.io/@imfromk/MLsklearn-Pipeline)
+
 
 We used ChatGPT to help generate and understand certain parts of the code during the development of this project.
 ## **VI)Conclusion: Discussion** ##
