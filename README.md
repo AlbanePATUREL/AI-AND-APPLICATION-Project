@@ -397,15 +397,6 @@ To construct this complex visualization, the script initializes a Matplotlib fig
 
 &emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
 
-This first graph shows how survival changes as the distance from the volcano increases. The trend is clearly positive: survival is lowest near the eruption center, then steadily rises with distance. At larger distances, survival becomes significantly higher.
-This indicates that distance was one of the strongest determinants of survival: → The farther people were from the volcano, the more likely they were to survive.
-This second graph ranks the factors that most influenced survival. Distance appears clearly as the dominant predictor, far ahead of the others. The remaining variables—such as gender or reaction time—have much weaker effects.
-This indicates that distance played the primary role in shaping survival outcomes, whereas other factors contributed only marginally: → Distance is the most influential variable by a wide margin.
-The third graph shows the correlation matrix between all variables. Overall, the pattern is quite dispersed, with most correlations being weak or close to zero. There is no strong linear relationship between most pairs of variables.
-This suggests that the variables are largely independent from one another: → No major correlations stand out in the dataset.
-Then the last graph compares the model’s predicted survival values with the actual observed survival rates. The two curves (or sets of points) follow each other closely, with only small deviations.
-This indicates that the model provides a good approximation of reality: → Predicted survival and actual survival are very similar overall.
-
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
