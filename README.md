@@ -185,7 +185,7 @@ def main():
 
 &emsp;1)Global Survival rate
 
-&emsp; <img width="500" height="400" alt="grapheSurvivalRate" src="plots\01_overall_survival_rate.png" />
+&emsp; <img width="500" height="400" alt="grapheSurvivalRate" src="https://raw.githubusercontent.com/username/repo/main/plots/01_overall_survival_rate.png" />
 48.8% global survival rate
 
 Almost half the population survived
