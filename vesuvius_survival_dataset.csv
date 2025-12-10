@@ -1,4 +1,4 @@
-PassengerId,Survived,DistanceFromV,Name,Sex,Age,WealthIndex,ShelterAccess,HasPet,ReactionTime,Status
+CivilianId,Survived,DistanceFromV,Name,Sex,Age,WealthIndex,ShelterAccess,HasPet,ReactionTime,Status
 1,0,18.57,Quintus Servilius,Female,36,80,0,0,8.39,Citizen
 2,1,17.39,Cassia Cornelius,Female,5,37,1,0,11.11,Citizen
 3,0,13.77,Marcus Domitius,Male,34,19,0,0,15.33,Slave
@@ -499,3 +499,4 @@ PassengerId,Survived,DistanceFromV,Name,Sex,Age,WealthIndex,ShelterAccess,HasPet
 498,1,49.15,Quintus Julius,Female,59,87,0,0,8.16,Noble
 499,0,6.14,Flavia Cornelius,Female,39,18,0,0,1.39,Citizen
 500,1,38.98,Livia Fabius,Male,22,26,0,0,4.89,Slave
+
