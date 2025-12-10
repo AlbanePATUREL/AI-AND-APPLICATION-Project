@@ -410,9 +410,12 @@ Finally, the SciPy function uniform_filter1d is applied to smooth certain time-s
 Together, all these libraries form the backbone of the project. They provide a strong foundation to explore, visualize, and model historical eruption data with modern AI techniques. This combination of tools turns raw geological information into meaningful insights that help us better understand the Pompeii eruption from a data-driven perspective.
 
 Inspired by these sources for the dataset : https://www.kaggle.com/code/mrisdal/exploring-survival-on-the-titanic/report
-&emsp;Inspired by these sources for RandomForest Regressor : SkLearn_RandomForest_Regressor1, Randomforest_regression
-&emsp;Inspired by these sources for the general project : https://github.com/chiiyokii/AI_Project
-&emsp;We used ChatGPT to help generate and understand certain parts of the code during the development of this project.
+
+Inspired by these sources for RandomForest Regressor : SkLearn_RandomForest_Regressor1, Randomforest_regression
+
+Inspired by these sources for the general project : https://github.com/chiiyokii/AI_Project
+
+We used ChatGPT to help generate and understand certain parts of the code during the development of this project.
 ## **VI)Conclusion: Discussion** ##
 
 This project demonstrates how artificial intelligence can help reinterpret historical events and extract meaningful patterns from complex scenarios such as the eruption of Mount Vesuvius. By constructing a synthetic dataset and applying machine-learning techniques—particularly the Random Forest model—we explored how demographic, social, behavioral, and geographical factors may have influenced survival during the catastrophe.
