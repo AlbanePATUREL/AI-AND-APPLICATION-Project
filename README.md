@@ -11,7 +11,7 @@
 | Albane PATUREL    | Computer science       |albane.paturel@edu.ece.fr  |
 | Zoé BOUSQUENAUD   | Computer Science       |zoe.bousquenaud@gmail.com  |
 
-Video link : 
+Video link : https://www.youtube.com/watch?v=gLG5L1szKHM
 
 
 ## **Proposal :**
