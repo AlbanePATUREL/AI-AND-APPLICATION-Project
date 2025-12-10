@@ -16,21 +16,18 @@ Video link :
 
 ## **Proposal :**
 
-&emsp;Pompeii was one of the most beautiful cities of the Roman Empire. With its busy streets, luxurious villas, and colorful frescoes, it offered everything for a prosperous life under the shadow of Mount Vesuvius.
-
-However, in 79 AD, disaster struck when Vesuvius violently erupted, covering the city in ash and pumice. Thousands perished, and Pompeii disappeared for centuries beneath volcanic debris.
+&emsp;Pompeii was one of the most beautiful cities of the Roman Empire. With its busy streets, luxurious villas, and colorful frescoes, it offered everything for a prosperous life under the shadow of Mount Vesuvius. However, in 79 AD, disaster struck when Vesuvius violently erupted, covering the city in ash and pumice. Thousands perished, and Pompeii disappeared for centuries beneath volcanic debris.
 
 Today, archaeologists use advanced technology, including AI-based tools, to study the ruins and predict volcanic activity. Our goal is to build a model that analyzes eruption data to better understand and prevent future catastrophes.
 
-Kaggle datasets we will use : 
-- https://www.kaggle.com/datasets/jessemostipak/volcano-eruptions
+Kaggle dataset we will use : 
 - https://www.kaggle.com/code/mrisdal/exploring-survival-on-the-titanic/report
 
 &emsp;Link on history we will use : https://en.wikipedia.org/wiki/Pompeii
 
 
 ## **I)Introduction** ##
-&emsp; -Motivation: This project's focus is on the tragedy that occured in Pompei, which could raise some questions. Why choose an event so ancient ? Well choosing Pompei as a first subject for this AI actually hold some very important reasons.
+&emsp; This project's focus is on the tragedy that occured in Pompei, which could raise some questions. Why choose an event so ancient ? Well choosing Pompei as a first subject for this AI actually hold some very important reasons.
 
 &emsp; For centuries, ancient ruins and civilization have been the center of archeology's attention : incas, azetcas, greeks and many others.  
 &emsp; Studying Pompeii through artificial intelligence is not only about understanding a single event, but about discovering broader patterns in how human societies face disaster. By analyzing who survived and why, we can uncover factors such as social structure, location, or behavior that influenced survival. These insights could then be compared with other ancient civilizations to reveal how different cultures responded to natural catastrophes.
@@ -52,7 +49,9 @@ Kaggle datasets we will use :
 ## **II)Datasets** ##
 &emsp; The Vesuvius Survival dataset contains 500 observations, each representing an individual who lived near Mount Vesuvius during a simulated catastrophic event. It includes 11 variables that describe demographic, social, behavioral, and geographical aspects of these individuals. The primary goal of this dataset appears to be identifying the factors that influenced survival likelihood during the eruption. The dataset is entirely complete, with no missing values, making it clean and ready for analysis.
 
-&emsp; The first column, CivilianId, is a simple numerical identifier ranging from 1 to 500. It serves solely as a unique key to distinguish individuals and carries no analytical significance. The key outcome variable is Survived, which indicates whether a person lived or died during the event. It is binary: 1 represents survival, while 0 indicates death. The mean value of 0.488 suggests that approximately 48.8% of the individuals survived, showing a nearly balanced distribution between survivors and non-survivors.
+&emsp; The key outcome variable is Survived, which indicates whether a person lived or died during the event. It is binary: 1 represents survival, while 0 indicates death. 
+
+&emsp; The first column, CivilianId, is a simple numerical identifier ranging from 1 to 500. It serves solely as a unique key to distinguish individuals and carries no analytical significance.
 
 &emsp; The variable DistanceFromV represents the individual’s distance from Mount Vesuvius, likely measured in kilometers. The values range from 0.07 to 49.99 km, with an average of about 25 km. This variable captures a major geographical factor — the farther a person was from the volcano, the higher their chance of survival. It is likely to be one of the most influential predictors in the dataset.
 
@@ -75,8 +74,6 @@ Kaggle datasets we will use :
 &emsp; In summary, the Vesuvius Survival dataset blends geographical (DistanceFromV), socio-economic (WealthIndex, Status, ShelterAccess), demographic (Age, Sex), and behavioral (HasPet, ReactionTime) factors to model human survival during a natural disaster. Its balanced structure and diverse variables make it ideal for multivariate analysis aimed at uncovering how social class, wealth, distance, and human behavior interact to determine survival outcomes in catastrophic scenarios.
 
 ## **III)Methodology** ##
-&emsp; -Explaining your choice of algorithms (methods, any modelsfrom AIML libraries)
-&emsp; -Explaining features or code (if any)
 The dataset used in this study was first imported and examined to understand its structure and content. An initial exploration was conducted by viewing sample rows, inspecting variable types, and generating descriptive statistics. This stage made it possible to identify irrelevant fields such as CivilianId and Name, which were removed because they carried no predictive value. The exploration also provided a preliminary understanding of the distribution of key factors such as age, distance from Vesuvius, wealth index, reaction time, and social status, helping form hypotheses about which variables might influence survival likelihood.
 
 Before training the predictive model, the dataset underwent a series of preprocessing steps. All categorical variables, including sex, social status, and gender, were encoded into numerical values using a label encoder to ensure compatibility with machine learning algorithms. The dataset was then split into features (X) and target (y), with the target variable representing survival. To ensure fair comparison between variables and avoid scale imbalances, all numerical features were standardized with a StandardScaler. The observations were divided into training and testing sets using an 80/20 split, stratified on the target variable to maintain a representative distribution of survivors and non-survivors in both subsets.
@@ -226,13 +223,11 @@ def plot_survival_by_age_tens(data, out_dir):
     print(f"✓ Chart saved: {out_file}")
 ```
 
-Technical Implementation: 
 To create this visualization, the code first transforms the continuous Age variable into decadal bins using integer division (floor division by 10, multiplied by 10). This creates distinct cohorts (e.g., 20s, 30s). We then utilize the Pandas groupby() function to aggregate these cohorts and calculate the .mean() of the binary 'Survived' column (0 or 1). This mathematical operation effectively converts the binary data into a survival probability rate for each age group. The trend is then plotted using Matplotlib with distinct markers to highlight the variation between decades.
 
 &emsp; <img width="500" height="400" alt="graphesurvivalAge" src="plots\02_survival_by_age_tens.png" />
 This line chart illustrates how survival varies by age decade (0–9, 10–19, etc.)
 
-Key insights:
 Children (0–9) and teens (10–19) have survival rates around 45–47%.
 Young adults (20–39) show slightly higher survival rates, reaching around 50–53%.
 Middle-aged groups (40–59) drop back to around 44–46%.
@@ -273,7 +268,7 @@ def plot_survival_by_gender(data, out_dir):
     plt.show()
     print(f"✓ Chart saved: {out_file}")
 ```
-Technical Implementation: To create this graph, the script first identifies the gender column. It then uses the Pandas groupby() function to split the data into two groups: Male and Female. To find the survival rate, the code simply calculates the average (.mean()) of the 'Survived' column. Since the data uses 0 for deceased and 1 for survivor, the average gives us the exact percentage of survivors. Finally, the results are displayed as a bar chart using specific colors (light coral and light blue) to easily distinguish between the two groups.
+To create this graph, the script first identifies the gender column. It then uses the Pandas groupby() function to split the data into two groups: Male and Female. To find the survival rate, the code simply calculates the average (.mean()) of the 'Survived' column. Since the data uses 0 for deceased and 1 for survivor, the average gives us the exact percentage of survivors. Finally, the results are displayed as a bar chart using specific colors (light coral and light blue) to easily distinguish between the two groups.
 
 &emsp; <img width="500" height="400" alt="grapheSurvivalGender" src="plots\04_survival_by_gender.png" />
 
@@ -392,11 +387,10 @@ def create_visualizations(data, X, y, rf_model, scaler, X_test, y_test,
     if 'Status' in data.columns:
         plot_survival_by_status(data, out_path)
 ```
-Technical Implementation:
+  :
 To construct this complex visualization, the script initializes a Matplotlib figure with a 2x2 subplot grid, allowing for the simultaneous display of four distinct analytical dimensions. For the survival probability chart, the code segregates test data by outcome to color-code the scatter plot and applies a uniform_filter1d function to compute a rolling average, generating the smooth blue trend line that visualizes probability distribution. The feature importance chart is derived directly from the trained Random Forest attributes, while the correlation matrix utilizes the Pandas corr() method rendered through a Seaborn heatmap with annotated coefficients. The final verification chart is achieved by superimposing two scatter plots sharing the same index, enabling a direct visual comparison between the ground truth and the model's predictions.
 
 &emsp; <img width="500" height="400" alt="graphe4" src="plots\00_model_analysis.png" />
-
 
 ## **V)Related Work (e.g., existing studies)** ##
 In this project, the goal was to analyze historical and geological data related to the eruption of Pompeii using modern machine learning tools. To achieve this, several Python libraries were combined to form a complete processing pipeline. Each library plays a specific role, from data collection to visualization and predictive modeling, ensuring that the analysis is both efficient and scientifically reliable.
